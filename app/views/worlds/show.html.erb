@@ -1,0 +1,18 @@
+<h1>World <%= @world.id %>: "<%= @world.title %>"</h1>
+
+<table>
+  <% (0 .. @world.chunks_high + 1).each do |x| %>
+    <tr>
+      <% (0 .. @world.chunks_wide + 1).each do |y| %>
+        <% chunk = @world.chunk(x, y) %>
+        <td>
+          <% if chunk %>
+            <%= link_to "(#{x}, #{y})", [@world, chunk] %>
+          <% else %>
+            <%= link_to "+(#{x}, #{y})", new_world_chunk_path(@world, x: x, y: y) %>
+          <% end %>
+        </td>
+      <% end %>
+    </tr>
+  <% end %>
+</table>

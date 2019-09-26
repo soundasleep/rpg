@@ -1,0 +1,27 @@
+<%= link_to "World #{@chunk.world.title}", @chunk.world %>
+
+<h2>Chunk <%= [@chunk.world_x, @chunk.world_y] %></h2>
+
+<%= link_to "randomize all tiles", randomize_world_chunk_path(@chunk.world, @chunk), method: :post, data: { confirm: "Are you sure?" } %>
+
+<%= form_for [@chunk.world, @chunk], method: :get, url: set_tile_world_chunk_path do |f| %>
+  <div class="edit-tile-types">
+    <% (0..8).each do |tile_type| %>
+      <label class="<%= tile_classes(tile_type, 0, 0, false) %>">
+        <%= radio_button_tag :tile_type, tile_type, tile_type == params[:tile_type]&.to_i %>
+      </label>
+    <% end %>
+  </div>
+
+  <table class="world">
+    <% @chunk.tiles.each.with_index do |row, y| %>
+      <tr>
+        <% row.each.with_index do |column, x| %>
+          <td class="<%= tile_classes(column, x, y, @chunk.impassable[x][y] != 0) %>">
+            <input type="submit" name="location" value="<%= x %>,<%= y %>">
+          </td>
+        <% end %>
+      </tr>
+    <% end %>
+  </table>
+<% end %>

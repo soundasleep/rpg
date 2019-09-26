@@ -1,0 +1,102 @@
+// Place all the styles related to the chunks controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+$tile-size: 32px;
+$atlas-size: 16px * 2;
+
+@function atlas($x, $y) {
+  @return "#{$x * -2px} #{$y * -2px}";
+}
+
+.edit-tile-types {
+  > label {
+    display: inline-block;
+    border: 1px solid #ccc;
+    width: $tile-size;
+    height: $tile-size;
+  }
+}
+
+.world {
+  border-collapse: collapse;
+}
+
+.tile {
+  width: $tile-size;
+  height: $tile-size;
+  border: 0;
+  background: #ccf;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+
+  background: url(asset_path('atlas.png'));
+  background-size: 512px * 2;
+
+  &.tile-0 {
+    background-position: #{atlas(16, 256)};
+  }
+  &.tile-1 {
+    background-position: #{atlas(32, 256)};
+  }
+  &.tile-2 {
+    background-position: #{atlas(48, 256)};
+  }
+  &.tile-3 {
+    background-position: #{atlas(16, 256 + 16)};
+  }
+  &.tile-4 {
+    background-position: #{atlas(32, 256 + 16)};
+  }
+  &.tile-5 {
+    background-position: #{atlas(48, 256 + 16)};
+  }
+  &.tile-6 {
+    background-position: #{atlas(16, 256 + 32)};
+  }
+  &.tile-7 {
+    background-position: #{atlas(32, 256 + 32)};
+  }
+  &.tile-8 {
+    background-position: #{atlas(48, 256 + 32)};
+  }
+
+  &.impassable {
+    border: 2px solid rgba(0,0,0,0.5);
+  }
+
+  &:hover {
+    input[type=submit] {
+      display: inline-block;
+    }
+  }
+
+  input[type=submit] {
+    display: none;
+    width: $tile-size;
+    height: $tile-size;
+    margin: auto auto;
+  }
+
+  .debug {
+    width: 16px;
+    height: 16px;
+    background: rgba(0,0,0,0.1);
+    text-indent: 900em;
+    overflow: hidden;
+    margin: auto auto;
+    cursor: pointer;
+
+    &:hover {
+      background: white;
+      position: absolute;
+      text-indent: 0;
+      z-index: 1;
+      margin-top: -($tile-size * 0.25);
+      box-shadow: 2px 2px 5px rgba(0,0,0,0.25);
+      width: 200px;
+      height: 100px;
+    }
+  }
+}

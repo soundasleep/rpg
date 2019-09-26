@@ -1,0 +1,37 @@
+<%= link_to "< World #{object.world.title}", object.world %>
+
+<section class="container">
+  <header>
+    <h2><%= object.new_record? ? "New Chunk" : "Edit Chunk" %></h2>
+  </header>
+
+  <%= render partial: "shared/validate", locals: { object: object } %>
+
+  <%= form_for [object.world, object] do |f| %>
+    <table>
+      <tr>
+        <th><%= f.label :world_x %></th>
+        <td><%= f.text_field :world_x %></td>
+      </tr>
+
+      <tr>
+        <th><%= f.label :world_y %></th>
+        <td><%= f.text_field :world_y %></td>
+      </tr>
+
+      <tr>
+        <th><%= f.label :tiles %></th>
+        <td><%= f.text_field :tiles %></td>
+      </tr>
+
+      <tr>
+        <th><%= f.label :impassable %></th>
+        <td><%= f.text_field :impassable %></td>
+      </tr>
+    </table>
+
+    <footer>
+      <%= f.submit(object.new_record? ? "Create" : "Update", class: "button ok") %>
+    </footer>
+  <% end %>
+</section>
