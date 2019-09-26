@@ -38,7 +38,7 @@ class Chunk < ApplicationRecord
   def randomize!
     tiles = Array.new(tile_height) do
       Array.new(tile_width) do
-        rand(8).floor # 0..7
+        world.tile_range.min + (rand() * world.tile_range.size).floor
       end
     end
 

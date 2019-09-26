@@ -1,12 +1,12 @@
 <%= link_to "World #{@chunk.world.title}", @chunk.world %>
 
-<h2>Chunk <%= [@chunk.world_x, @chunk.world_y] %></h2>
+<h2>Chunk Editor: <%= [@chunk.world_x, @chunk.world_y] %></h2>
 
 <%= link_to "randomize all tiles", randomize_world_chunk_path(@chunk.world, @chunk), method: :post, data: { confirm: "Are you sure?" } %>
 
 <%= form_for [@chunk.world, @chunk], method: :get, url: set_tile_world_chunk_path do |f| %>
   <div class="edit-tile-types">
-    <% (0..8).each do |tile_type| %>
+    <% @chunk.world.tile_range.each do |tile_type| %>
       <label class="<%= tile_classes(tile_type, 0, 0, false) %>">
         <%= radio_button_tag :tile_type, tile_type, tile_type == params[:tile_type]&.to_i %>
       </label>

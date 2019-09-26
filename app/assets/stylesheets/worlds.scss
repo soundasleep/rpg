@@ -1,3 +1,24 @@
 // Place all the styles related to the worlds controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+@import url('https://fonts.googleapis.com/css?family=Roboto&display=swap');
+
+html, body {
+  background: #111;
+  color: #eee;
+  margin: 10px;
+  padding: 10px;
+  font-family: 'Roboto', sans-serif;
+  font-size: 16px;
+  line-height: 1.3;
+
+  a {
+    color: yellow;
+    transition: color 0.2s;
+
+    &:hover, &:active {
+      color: mix(yellow, lime);
+    }
+  }
+}

@@ -16,5 +16,9 @@ class World < ApplicationRecord
     @chunk[[x, y]]
   end
 
+  def tile_range
+    (0..9)
+  end
+
   validates :title, presence: true
 end
