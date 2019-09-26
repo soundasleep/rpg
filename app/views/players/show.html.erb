@@ -1,0 +1,38 @@
+<h2>Player <%= @player.title %></h2>
+
+<table>
+  <tr>
+    <th>Title</th>
+    <td><%= @player.title %></td>
+  </tr>
+  <tr>
+    <th>Level</th>
+    <td><%= @player.level %></td>
+  </tr>
+  <tr>
+    <th>Health</th>
+    <td><%= @player.health %></td>
+  </tr>
+  <tr>
+    <th>Mana</th>
+    <td><%= @player.mana %></td>
+  </tr>
+  <tr>
+    <th>World</th>
+    <td><%= link_to "#{@player.chunk.world.title}", @player.chunk.world %></td>
+  </tr>
+  <tr>
+    <th>Location</th>
+    <td>
+      (<%= @player.world_x %>, <%= @player.world_y %>)
+      <small>
+      (<%= @player.chunk_x %>, <%= @player.chunk_y %>)
+      at chunk <%= link_to "(#{@player.chunk.world_x},#{@player.chunk.world_y})", [@player.chunk.world, @player.chunk] %>
+      </small>
+    </td>
+  </tr>
+</table>
+
+<%= link_to "Edit", edit_player_path(@player) %>
+
+<%= link_to "Respawn in default world", respawn_in_default_world_player_path(@player), method: :post, data: { confirm: "Are you sure?" } %>

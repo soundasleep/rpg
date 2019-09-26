@@ -10,6 +10,14 @@
   </head>
 
   <body>
+    <nav class="main">
+      <ul>
+        <li><%= link_to "Home", root_path %></li>
+        <li><%= link_to "Worlds", worlds_path %></li>
+        <li><%= link_to "Players", players_path %></li>
+      </ul>
+    </nav>
+
     <%= yield %>
   </body>
 </html>

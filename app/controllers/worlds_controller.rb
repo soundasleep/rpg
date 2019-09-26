@@ -18,6 +18,22 @@ class WorldsController < ApplicationController
     end
   end
 
+  def edit
+    @world = World.find(params[:id])
+  end
+
+  def update
+    @world = World.find(params[:id])
+    @world.assign_attributes(world_params)
+
+    if @world.save
+      redirect_to @world
+    else
+      flash.now[:errors] = @world.errors.full_messages
+      render "edit"
+    end
+  end
+
   def show
     @world = World.find(params[:id])
   end
@@ -25,6 +41,6 @@ class WorldsController < ApplicationController
   private
 
   def world_params
-    params.require(:world).permit(:title)
+    params.require(:world).permit(:title, :default_chunk_id, :spawn_x, :spawn_y)
   end
 end

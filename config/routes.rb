@@ -9,5 +9,11 @@ Rails.application.routes.draw do
     end
   end
 
+  resources :players do
+    member do
+      post :respawn_in_default_world
+    end
+  end
+
   root 'worlds#index'
 end

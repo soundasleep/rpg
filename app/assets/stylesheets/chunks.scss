@@ -78,8 +78,8 @@ $atlas-size: 16px * 2;
 
   input[type=submit] {
     display: none;
-    width: $tile-size;
-    height: $tile-size;
+    width: $tile-size * 0.9;
+    height: $tile-size * 0.9;
     margin: auto auto;
   }
 

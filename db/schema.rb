@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_09_26_015052) do
+ActiveRecord::Schema.define(version: 2019_09_26_034103) do
 
   create_table "chunks", force: :cascade do |t|
     t.integer "world_id", null: false
@@ -73,6 +73,8 @@ ActiveRecord::Schema.define(version: 2019_09_26_015052) do
     t.string "title", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "spawn_x", default: 0, null: false
+    t.integer "spawn_y", default: 0, null: false
   end
 
 end

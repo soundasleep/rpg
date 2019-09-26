@@ -9,12 +9,12 @@ class Chunk < ApplicationRecord
   validate :validate_tiles_dimensions
   validate :validate_impassable_dimensions
 
-  def tile_width
-    64
+  def chunk_width
+    world.chunk_width
   end
 
-  def tile_height
-    64
+  def chunk_height
+    world.chunk_height
   end
 
   def tiles
@@ -36,14 +36,14 @@ class Chunk < ApplicationRecord
   end
 
   def randomize!
-    tiles = Array.new(tile_height) do
-      Array.new(tile_width) do
+    tiles = Array.new(chunk_height) do
+      Array.new(chunk_width) do
         world.tile_range.min + (rand() * world.tile_range.size).floor
       end
     end
 
-    impassable = Array.new(tile_height) do
-      Array.new(tile_width) do
+    impassable = Array.new(chunk_height) do
+      Array.new(chunk_width) do
         rand() < 0.1 ? 1 : 0
       end
     end
@@ -77,12 +77,12 @@ class Chunk < ApplicationRecord
   def validate_dimensions(arrays, key)
     return if arrays.empty?
 
-    if arrays.length != tile_height
-      errors.add(:key, "height of #{arrays.length} did not match expected #{tile_height}")
+    if arrays.length != chunk_height
+      errors.add(:key, "height of #{arrays.length} did not match expected #{chunk_height}")
     end
 
-    if arrays.first.length != tile_width
-      errors.add(:key, "width of #{arrays.length} did not match expected #{tile_width}")
+    if arrays.first.length != chunk_width
+      errors.add(:key, "width of #{arrays.length} did not match expected #{chunk_width}")
     end
   end
 end

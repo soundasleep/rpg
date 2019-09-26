@@ -1,8 +1,8 @@
-<%= link_to "< All Worlds", worlds_path %>
+<%= link_to "< All Players", players_path %>
 
 <section class="container">
   <header>
-    <h2><%= object.new_record? ? "New World" : "Edit World" %></h2>
+    <h2><%= object.new_record? ? "New Player" : "Edit Player" %></h2>
   </header>
 
   <%= render partial: "shared/validate", locals: { object: object } %>
@@ -15,23 +15,23 @@
       </tr>
 
       <tr>
-        <th><%= f.label :spawn_x %></th>
-        <td><%= f.text_field :spawn_x %></td>
+        <th><%= f.label :level %></th>
+        <td><%= f.text_field :level %></td>
       </tr>
 
       <tr>
-        <th><%= f.label :spawn_y %></th>
-        <td><%= f.text_field :spawn_y %></td>
+        <th><%= f.label :chunk_id %></th>
+        <td><%= f.text_field :chunk_id %></td>
       </tr>
 
       <tr>
-        <th><%= f.label :chunk_width %></th>
-        <td><%= f.text_field :chunk_width %></td>
+        <th><%= f.label :chunk_x %></th>
+        <td><%= f.text_field :chunk_x %></td>
       </tr>
 
       <tr>
-        <th><%= f.label :chunk_height %></th>
-        <td><%= f.text_field :chunk_height %></td>
+        <th><%= f.label :chunk_y %></th>
+        <td><%= f.text_field :chunk_y %></td>
       </tr>
     </table>
 
