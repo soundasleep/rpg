@@ -26,4 +26,24 @@ class Player < ApplicationRecord
   def describe
     "\"#{title}\" (level #{level})"
   end
+
+  def to_public_json
+    {
+      id: id,
+      title: title,
+      level: level,
+      health: health,
+      mana: mana,
+      world: {
+        id: chunk.world.id,
+        x: world_x,
+        y: world_y,
+      },
+      chunk: {
+        id: chunk.id,
+        x: chunk_x,
+        y: chunk_y,
+      },
+    }
+  end
 end

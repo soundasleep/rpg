@@ -1,6 +1,6 @@
 <%= link_to "World #{@chunk.world.title}", @chunk.world %>
 
-<h2>Chunk Editor: <%= [@chunk.world_x, @chunk.world_y] %></h2>
+<h2>Chunk Editor: <%= [@chunk.world_x, @chunk.world_y] %> <%= json_link %></h2>
 
 <%= link_to "randomize all tiles", randomize_world_chunk_path(@chunk.world, @chunk), method: :post, data: { confirm: "Are you sure?" } %>
 

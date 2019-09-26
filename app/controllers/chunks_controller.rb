@@ -19,6 +19,11 @@ class ChunksController < ApplicationController
   def show
     @world = World.find(params[:world_id])
     @chunk = @world.chunks.find(params[:id])
+
+    respond_to do |format|
+      format.html
+      format.json { render json: @chunk.to_public_json }
+    end
   end
 
   def randomize

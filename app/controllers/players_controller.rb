@@ -37,6 +37,11 @@ class PlayersController < ApplicationController
 
   def show
     @player = Player.find(params[:id])
+
+    respond_to do |format|
+      format.html
+      format.json { render json: @player.to_public_json }
+    end
   end
 
   def respawn_in_default_world

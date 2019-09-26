@@ -1,4 +1,4 @@
-<h1>World <%= @world.id %>: "<%= @world.title %>"</h1>
+<h1>World <%= @world.id %>: "<%= @world.title %>" <%= json_link %></h1>
 
 <table>
   <% (0 .. @world.chunks_high + 1).each do |x| %>

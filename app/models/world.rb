@@ -39,5 +39,22 @@ class World < ApplicationRecord
     }
   end
 
+  def to_public_json
+    {
+      id: id,
+      title: title,
+      chunks: {
+        wide: chunks_wide,
+        high: chunks_high,
+        width: chunk_width,
+        height: chunk_height,
+      },
+      spawn: {
+        x: spawn_x,
+        y: spawn_y,
+      }
+    }
+  end
+
   private
 end

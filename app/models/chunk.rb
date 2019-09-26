@@ -3,6 +3,7 @@ class Chunk < ApplicationRecord
 
   has_many :chunks, dependent: :destroy
   has_many :players, dependent: :nullify
+  has_many :entities, dependent: :destroy
 
   validates :world, :world_x, :world_y, presence: true
 
@@ -50,6 +51,21 @@ class Chunk < ApplicationRecord
 
     assign_tiles(tiles)
     assign_impassable(impassable)
+  end
+
+  def to_public_json
+    {
+      id: id,
+      world: {
+        id: world.id,
+        x: world_x,
+        y: world_y,
+      },
+      tiles: tiles,
+      impassable: impassable,
+      players: players.map(&:to_public_json),
+      entities: entities.map(&:to_public_json),
+    }
   end
 
   private
