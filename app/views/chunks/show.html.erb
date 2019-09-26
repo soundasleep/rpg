@@ -18,7 +18,7 @@
       <% @chunk.tiles.each.with_index do |row, y| %>
         <tr>
           <% row.each.with_index do |column, x| %>
-            <td class="<%= tile_classes(column, x, y, @chunk.impassable[x][y] != 0) %>">
+            <td class="<%= tile_classes(column, x, y, @chunk.impassable[y][x] != 0) %>">
               <input type="submit" name="location" value="<%= x %>,<%= y %>">
             </td>
           <% end %>

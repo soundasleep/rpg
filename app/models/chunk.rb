@@ -45,16 +45,28 @@ class Chunk < ApplicationRecord
 
     impassable = Array.new(chunk_height) do
       Array.new(chunk_width) do
-        rand() < 0.1 ? 1 : 0
+        # rand() < 0.1 ? 1 : 0
+        0
       end
     end
 
     my_entities = Array.new((chunk_width * 0.5) + (rand() * chunk_width * 0.5)) do
+      x = (rand() * (chunk_width - 4)).floor
+      y = (rand() * (chunk_height - 5)).floor
+      width = 4
+      height = 5
+
+      (0...width).each do |dx|
+        (0...height).each do |dy|
+          impassable[(y + dy).floor][(x + dx).floor] = 1
+        end
+      end
+
       entities.new({
-        chunk_x: rand() * (chunk_width - 4),
-        chunk_y: rand() * (chunk_height - 5),
-        width: 4,
-        height: 5,
+        chunk_x: x,
+        chunk_y: y,
+        width: width,
+        height: height,
         entity_type: "tree#{(rand() * 2).floor}",
       })
     end
