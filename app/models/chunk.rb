@@ -36,10 +36,83 @@ class Chunk < ApplicationRecord
     @impassable = impassable
   end
 
+  PATH_SE = 0
+  PATH_S = 1
+  PATH_SW = 2
+  PATH_E = 3
+  PATH_CLEAR = 4
+  PATH_W = 5
+  PATH_NE = 6
+  PATH_N = 7
+  PATH_NW = 8
+  GRASS_CLEAR = 9
+
   def randomize!
-    tiles = Array.new(chunk_height) do
+    # Custom randomise: everything is grass, except for
+    # certain blocks, which become path
+    is_path = Array.new(chunk_height) do
       Array.new(chunk_width) do
-        world.tile_range.min + (rand() * world.tile_range.size).floor
+        false
+      end
+    end
+
+    chunk_width.times do
+      width = (rand() * 6) + 1
+      height = (rand() * 6) + 1
+      x = (rand() * (chunk_width - width)).floor
+      y = (rand() * (chunk_height - height)).floor
+
+      (0...width).each do |dx|
+        (0...height).each do |dy|
+          is_path[y + dy][x + dx] = true
+        end
+      end
+    end
+
+    # convert into tiles
+
+    tiles = Array.new(chunk_height) do |y|
+      Array.new(chunk_width) do |x|
+        path_nw = y > 0 && x > 0 && is_path[y - 1][x - 1]
+        path_n = y > 0 && is_path[y - 1][x]
+        path_ne = y > 0 && x < chunk_width - 1 && is_path[y - 1][x + 1]
+        path_w = x > 0 && is_path[y][x - 1]
+        path_e = x < chunk_width - 1 && is_path[y][x + 1]
+        path_sw = y < chunk_height - 1 && x > 0 && is_path[y + 1][x - 1]
+        path_s = y < chunk_height - 1 && is_path[y + 1][x]
+        path_se = y < chunk_height - 1 && x < chunk_width - 1 && is_path[y + 1][x + 1]
+        path = is_path[y][x]
+
+        if path
+          if !path_n
+            if !path_w
+              PATH_SE
+            elsif !path_e
+              PATH_SW
+            else
+              PATH_S
+            end
+          elsif !path_s
+            if !path_w
+              PATH_NE
+            elsif !path_e
+              PATH_NW
+            else
+              PATH_N
+            end
+          elsif !path_w
+            PATH_E
+          elsif !path_e
+            PATH_W
+          else
+            # missing: path nse, nsw, nwe, swe
+            PATH_CLEAR
+          end
+        else
+          GRASS_CLEAR
+        end
+
+#        world.tile_range.min + (rand() * world.tile_range.size).floor
       end
     end
 
