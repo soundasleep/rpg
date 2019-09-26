@@ -49,8 +49,19 @@ class Chunk < ApplicationRecord
       end
     end
 
+    my_entities = Array.new((chunk_width * 0.5) + (rand() * chunk_width * 0.5)) do
+      entities.new({
+        chunk_x: rand() * (chunk_width - 4),
+        chunk_y: rand() * (chunk_height - 5),
+        width: 4,
+        height: 5,
+        entity_type: "tree#{(rand() * 2).floor}",
+      })
+    end
+
     assign_tiles(tiles)
     assign_impassable(impassable)
+    assign_attributes(entities: my_entities)
   end
 
   def to_public_json

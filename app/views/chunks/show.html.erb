@@ -13,15 +13,22 @@
     <% end %>
   </div>
 
-  <table class="world">
-    <% @chunk.tiles.each.with_index do |row, y| %>
-      <tr>
-        <% row.each.with_index do |column, x| %>
-          <td class="<%= tile_classes(column, x, y, @chunk.impassable[x][y] != 0) %>">
-            <input type="submit" name="location" value="<%= x %>,<%= y %>">
-          </td>
-        <% end %>
-      </tr>
+  <div style="position: relative;"><!-- new rendering context -->
+    <table class="world" style="position: absolute; left: 0px; top: 0px; width: <%= @chunk.chunk_width * display_width %>px; height: <%= @chunk.chunk_height * display_height %>px;">
+      <% @chunk.tiles.each.with_index do |row, y| %>
+        <tr>
+          <% row.each.with_index do |column, x| %>
+            <td class="<%= tile_classes(column, x, y, @chunk.impassable[x][y] != 0) %>">
+              <input type="submit" name="location" value="<%= x %>,<%= y %>">
+            </td>
+          <% end %>
+        </tr>
+      <% end %>
+    </table>
+
+    <% @chunk.entities.each do |entity| %>
+      <div class="<%= entity_classes(entity) %>"
+        style="position: absolute; left: <%= (entity.chunk_x * display_width).round %>px; top: <%= (entity.chunk_y * display_height).round %>px; width: <%= entity.width * display_width %>px; height: <%= entity.height * display_height %>px;"></div>
     <% end %>
-  </table>
+  </div>
 <% end %>

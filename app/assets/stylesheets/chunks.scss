@@ -22,6 +22,23 @@ $atlas-size: 16px * 2;
   border-collapse: collapse;
 }
 
+.entity {
+  display: inline-block;
+  z-index: 1;
+
+  background: url(asset_path('atlas.png'));
+  background-size: 512px * 2;
+  background-position: 0 0;
+
+  &.entity-tree0 {
+    background-position: #{atlas(72, 160)};
+  }
+
+  &.entity-tree1 {
+    background-position: #{atlas(140, 160)};
+  }
+}
+
 .tile {
   width: $tile-size;
   height: $tile-size;
@@ -96,7 +113,7 @@ $atlas-size: 16px * 2;
       background: white;
       position: absolute;
       text-indent: 0;
-      z-index: 1;
+      z-index: 10;
       margin-top: -($tile-size * 0.25);
       box-shadow: 2px 2px 5px rgba(0,0,0,0.25);
       width: 200px;

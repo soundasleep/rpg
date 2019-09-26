@@ -23,11 +23,11 @@ class World < ApplicationRecord
   end
 
   def chunk_width
-    64
+    32
   end
 
   def chunk_height
-    64
+    32
   end
 
   # Returns { chunk, chunk_x, chunk_y } for a given world (x, y)
