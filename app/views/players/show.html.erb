@@ -33,7 +33,7 @@
   </tr>
 </table>
 
-<%= react_component("HelloWorld", { greeting: "Hello from react-rails." }) %>
+<%= react_component("PlayerInterface", { id: @player.id, api_root: root_url }) %>
 
 <%= link_to "Edit", edit_player_path(@player) %>
 
