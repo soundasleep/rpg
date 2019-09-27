@@ -16,7 +16,19 @@ console.log('Hello World from Webpacker');
 
 import "./hello_react";
 
+import Turbolinks from "turbolinks";
+import ReactRailsUJS from "react_ujs";
+
+// From https://github.com/reactjs/react-rails/issues/899...
+// This needs to be in this particular order:
+Turbolinks.start();
+// Add Turbolinks to the global namespace
+window.Turbolinks = Turbolinks;
+// Remove previous (native) events, and add Turbolinks'
+ReactRailsUJS.detectEvents();
+// (Optional) Clean up global namespace
+// delete window.Turbolinks;
+
 // Support component names relative to this directory:
 var componentRequireContext = require.context("components", true);
-var ReactRailsUJS = require("react_ujs");
 ReactRailsUJS.useContext(componentRequireContext);
