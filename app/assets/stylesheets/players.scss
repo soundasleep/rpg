@@ -18,6 +18,27 @@
     width: 20%;
     border: 1px solid mix($color-background, $color-text);
     padding: $spacing;
+
+    dl {
+      margin: 0;
+      padding: 0;
+
+      dt, dd {
+        display: inline-block;
+        margin: 0;
+        margin-bottom: $spacing / 2;
+        padding: 0;
+      }
+
+      dt {
+        clear: both;
+        width: 30%;
+        font-weight: bold;
+      }
+      dd {
+        width: 65%;
+      }
+    }
   }
 
   .player-view {

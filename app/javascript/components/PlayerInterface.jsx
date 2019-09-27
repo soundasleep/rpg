@@ -3,7 +3,9 @@ import PropTypes from "prop-types";
 
 import ErrorMessage from "./ErrorMessage";
 import Loading from "./Loading";
+
 import PlayerStatistics from "./PlayerStatistics";
+import PlayerControls from "./PlayerControls";
 
 class PlayerInterface extends React.Component {
   constructor(props) {
@@ -52,6 +54,7 @@ class PlayerInterface extends React.Component {
       return <div className="player-interface">
         <div className="player-statistics">
           <PlayerStatistics {...player} />
+          <PlayerControls {...player} />
         </div>
         <div className="player-view">
           player-view
