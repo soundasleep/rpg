@@ -5,8 +5,8 @@
 $tile-size: 32px;
 $atlas-size: 16px * 2;
 
-@function atlas($x, $y) {
-  @return "#{$x * -2px} #{$y * -2px}";
+@function atlas($x, $y, $ratio: 1) {
+  @return "#{$x * -2px * $ratio} #{$y * -2px * $ratio}";
 }
 
 .edit-tile-types {
@@ -36,6 +36,38 @@ $atlas-size: 16px * 2;
 
   &.entity-tree1 {
     background-position: #{atlas(140, 160)};
+  }
+}
+
+.player {
+  $player-ratio: 1 / 1.55;
+
+  display: inline-block;
+  z-index: 1;
+
+  background: url(asset_path('atlas.png'));
+  background-size: 512px * 2 * $player-ratio;
+  background-position: 0 0;
+
+  &.player-gender-f {
+    background-position: #{atlas(270, 151, $player-ratio)};
+
+    &.running {
+      animation: player-run 0.8s steps(6) infinite;
+    }
+  }
+
+  &.player-gender-m {
+    background-position: #{atlas(270, 186, $player-ratio)};
+
+    &.running {
+      animation: player-run 0.8s steps(6) infinite;
+    }
+  }
+
+  @keyframes player-run {
+    0% { background-position-x: 270 * -2px * $player-ratio; }
+    100% { background-position-x: 413 * -2px * $player-ratio; }
   }
 }
 

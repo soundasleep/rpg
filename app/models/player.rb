@@ -23,6 +23,14 @@ class Player < ApplicationRecord
     (chunk.world_y * chunk.chunk_height) + chunk_y
   end
 
+  def width
+    1
+  end
+
+  def height
+    1
+  end
+
   def describe
     "\"#{title}\" (level #{level})"
   end

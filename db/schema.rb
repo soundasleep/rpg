@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_09_26_034103) do
+ActiveRecord::Schema.define(version: 2019_09_27_030933) do
 
   create_table "chunks", force: :cascade do |t|
     t.integer "world_id", null: false
@@ -66,6 +66,7 @@ ActiveRecord::Schema.define(version: 2019_09_26_034103) do
     t.integer "mana", default: 1, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "gender", default: "f", null: false
     t.index ["chunk_id"], name: "index_players_on_chunk_id"
   end
 

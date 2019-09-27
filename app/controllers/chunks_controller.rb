@@ -61,33 +61,6 @@ class ChunksController < ApplicationController
 
   private
 
-  helper_method :tile_classes
-  def tile_classes(tile_type, x, y, impassable)
-    [
-      "tile",
-      "tile-#{tile_type}",
-      impassable ? "impassable" : nil,
-    ].compact.join(" ")
-  end
-
-  helper_method :entity_classes
-  def entity_classes(entity)
-    [
-      "entity",
-      "entity-#{entity.entity_type}",
-    ].compact.join(" ")
-  end
-
-  helper_method :display_width
-  def display_width
-    32
-  end
-
-  helper_method :display_height
-  def display_height
-    32
-  end
-
   def chunk_params
     params.require(:chunk).permit(:world_x, :world_y, :tiles_serialized, :impassable_serialized)
   end

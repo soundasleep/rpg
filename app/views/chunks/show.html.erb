@@ -30,5 +30,11 @@
       <div class="<%= entity_classes(entity) %>"
         style="position: absolute; left: <%= (entity.chunk_x * display_width).round %>px; top: <%= (entity.chunk_y * display_height).round %>px; width: <%= entity.width * display_width %>px; height: <%= entity.height * display_height %>px;"></div>
     <% end %>
+
+    <% @chunk.players.each do |player| %>
+      <div class="<%= player_classes(player) %>"
+        title="<%= player.describe %>"
+        style="position: absolute; left: <%= (player.chunk_x * display_width).round %>px; top: <%= (player.chunk_y * display_height).round %>px; width: <%= player.width * display_width %>px; height: <%= player.height * display_height %>px;"></div>
+    <% end %>
   </div>
 <% end %>
