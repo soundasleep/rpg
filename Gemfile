@@ -18,6 +18,7 @@ gem 'uglifier', '>= 1.3.0'
 
 # Transpile app-like JavaScript. Read more: https://github.com/rails/webpacker
 gem 'webpacker', '~> 4.x'
+gem 'react-rails'
 
 # Use CoffeeScript for .coffee assets and views
 gem 'coffee-rails', '~> 4.2'

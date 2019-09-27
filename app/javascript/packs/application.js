@@ -12,6 +12,11 @@
 // import "core-js/stable"; - doesn't work: https://github.com/rails/webpacker/issues/2305
 import "regenerator-runtime/runtime";
 
-console.log('Hello World from Webpacker')
+console.log('Hello World from Webpacker');
 
 import "./hello_react";
+
+// Support component names relative to this directory:
+var componentRequireContext = require.context("components", true);
+var ReactRailsUJS = require("react_ujs");
+ReactRailsUJS.useContext(componentRequireContext);

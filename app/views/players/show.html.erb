@@ -33,6 +33,9 @@
   </tr>
 </table>
 
+<%= react_component("HelloWorld", { greeting: "Hello from react-rails." }) %>
+
 <%= link_to "Edit", edit_player_path(@player) %>
 
 <%= link_to "Respawn in default world", respawn_in_default_world_player_path(@player), method: :post, data: { confirm: "Are you sure?" } %>
+
